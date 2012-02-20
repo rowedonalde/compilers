@@ -1,16 +1,57 @@
-\documentclass{article}
+\documentclass[landscape]{report}
 \title{CMSI 488 Homework 1}
 \author{Don Rowe}
 \date{Due February 21, 2012}
+
+\usepackage{listings}
+\usepackage[landscape]{geometry}
+
+\lstset{
+  basicstyle=\footnotesize
+}
 
 \begin{document}
 
   \maketitle
   
   \begin{enumerate}
-    \item
+    \item %1
     \begin{enumerate}
-      \item Sup Bro
+      \item %1a
+        \lstinputlisting{prob1a.regex}
+        Canadian postal are in the format A0A 0A0, where ``A" is any English
+        capital except for D, F, I, O, Q, or U and ``0" is any digit.
+        Additionally, the first letter cannot be W or Z. Also, notice the
+        space between the groups of three.
+      \item %1b
+        \lstinputlisting{prob1b.regex}
+        Visa card numbers begin with a 4 and are followed by either 12 or 15
+        more digits. The above regular expression assumes that there are always
+        at least the first 13 digits with an optional additional 3 digits.
+      \item %1c
+        \lstinputlisting{prob1c.regex}
+        MasterCard numbers begin with a 5, and the second digit is between 1
+        and 5. The remaining 14 digits can be any digit.
+      \item %1d
+        \lstinputlisting{prob1d.regex}
+        Numeric literals in Ada95 come in two flavors: based literals and
+        decimal literals.
+        
+        A based literal is separated into three sections
+        delimited by \# signs. The first section is any number of digits,
+        possibly separated at arbitrary intervals after the first digit by an
+        underscore character; this sequence, represented by
+        \lstinline`\d+(_\d+)*` in the regular expression, is simply called a
+        numeral. The second section is a based numeral possibly having a
+        fractional part after a dot; based numerals are like numerals, only
+        they are hexadecimal and are represented by
+        \lstinline`[\dA-F](_[\dA-F]+)*` in the regular expression. The third
+        section is an optional exponent notated with a capital E, an optional
+        plus or minus sign, and a numeral; an exponent is represented in the
+        regular expression by \lstinline`(E[+-]?\d+(_\d)*)`.
+        
+        A decimal literal is comprised of a numeral followed by an optional
+        fractional part and an optional exponent.
     \end{enumerate}
   \end{enumerate}
 
