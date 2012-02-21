@@ -5,6 +5,7 @@
 
 \usepackage{listings}
 \usepackage[landscape]{geometry}
+\usepackage{graphicx}
 
 \lstset{
   basicstyle=\footnotesize
@@ -18,22 +19,22 @@
     \item %1
     \begin{enumerate}
       \item %1a
-        \lstinputlisting{prob1a.regex}
+        \lstinputlisting{src/prob1a.regex}
         Canadian postal are in the format A0A 0A0, where ``A" is any English
         capital except for D, F, I, O, Q, or U and ``0" is any digit.
         Additionally, the first letter cannot be W or Z. Also, notice the
         space between the groups of three.
       \item %1b
-        \lstinputlisting{prob1b.regex}
+        \lstinputlisting{src/prob1b.regex}
         Visa card numbers begin with a 4 and are followed by either 12 or 15
         more digits. The above regular expression assumes that there are always
         at least the first 13 digits with an optional additional 3 digits.
       \item %1c
-        \lstinputlisting{prob1c.regex}
+        \lstinputlisting{src/prob1c.regex}
         MasterCard numbers begin with a 5, and the second digit is between 1
         and 5. The remaining 14 digits can be any digit.
       \item %1d
-        \lstinputlisting{prob1d.regex}
+        \lstinputlisting{src/prob1d.regex}
         Numeric literals in Ada95 come in two flavors: based literals and
         decimal literals.
         
@@ -48,11 +49,71 @@
         \lstinline`[\dA-F](_[\dA-F]+)*` in the regular expression. The third
         section is an optional exponent notated with a capital E, an optional
         plus or minus sign, and a numeral; an exponent is represented in the
-        regular expression by \lstinline`(E[+-]?\d+(_\d)*)`.
+        regular expression by \lstinline`(E[\+\-]?\d+(_\d)*)`.
         
         A decimal literal is comprised of a numeral followed by an optional
         fractional part and an optional exponent.
+      \item %1e
+        \lstinputlisting{src/prob1e.regex}
+        This language includes strings made up of any combination of the
+        characters ``a", ``b", and ``c", provided ``a" is never followed
+        immediately by another ``a" (represented in the regular expression by
+        \lstinline`a(?!a)`) and provided ``b" is never followed immediately by
+        ``ab" (represented by \lstinline`b(?!ab)`). To ensure that the pattern
+        is applied to the whole string, the beginning ^ and ending $ are
+        included in the regex; otherwise, legal substrings of an illegal string
+        can be matched. For example, the string accccbabaaccccbcbba does not
+        match as a whole, but the substrings acccc, ab, and accccbcbba (split
+        by the first b and third a) are matched.
     \end{enumerate}
+    \item %2
+      \lstinputlisting{src/prob2.js}
+    \item %3
+    \begin{enumerate}
+      \item %3a
+        This grammar produces strings made of the characters ``a" and ``b".
+        The shortest string in this language is ``a": if a string begins with a
+        ``b", it must be followed by at least ``aa". If a string in this
+        language ends with a ``b", it must be immediately preceded by an ``a".
+      \item %3b
+        \includegraphics{img/prob3b.svg}
+      \item %3c
+        LL grammars cannot handle left recursion. This grammar uses left
+        recursion to expand rules A and B, so this grammar is not LL. (LL
+        grammars cannot handle left recursion because the rules can expand
+        infinitely long, and LL grammars feature a finite maximum number of
+        tokens to determine the path along choice points.)
+      \item %3d
+        Grammars are ambiguous if there exists a string for which there is more
+        than one way to parse it. Below is another parse tree for ``abaa".
+        Therefore, this grammar is ambiguous.
+        
+        \includegraphics{img/prob3d.svg}
+    \end{enumerate}
+    \item %4
+    \begin{enumerate}
+      \item %4a
+        This grammar uses left recursion in the rule EXP. Therefore, this
+        grammar is not LL(1).
+    \end{enumerate}
+    \item %5
+      The unary negation operator was placed with the ADDOPs for symmetry--
+      indeed, unary negation in the form of $-x$ is an implication of $0-x$.
+      Additionally, since $y--x$ (that is, subtracting $-x$ from $y$) cannot
+      occur in Ada, it is consistent to throw out any case of an operator
+      immediately preceding a unary negation operator.
+      
+      The expression \lstinline{-8 * 5} can be thus represented with this
+      abstract syntax tree:
+      
+      \includegraphics{img/prob5.svg}
+      
+      This parsing is similar to parsing with the negation operator in EXP4 in
+      that the answer is still -40 since the negation operator is commutative.
+      The parsing is different, though, in that the negation is applied to the
+      whole product of $8 * 5$ as opposed to applying the negation first to 8.
+    \item %6
+      
   \end{enumerate}
 
 \end{document}
