@@ -1,0 +1,4 @@
+EXP -> (ID ":=")+ TERMS
+TERMS -> FACTORS ("+" FACTORS)*
+FACTORS -> FACTOR ("*" FACTOR)*
+FACTOR ->
