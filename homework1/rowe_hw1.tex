@@ -60,7 +60,7 @@
         immediately by another ``a" (represented in the regular expression by
         \lstinline`a(?!a)`) and provided ``b" is never followed immediately by
         ``ab" (represented by \lstinline`b(?!ab)`). To ensure that the pattern
-        is applied to the whole string, the beginning ^ and ending $ are
+        is applied to the whole string, the beginning \^ and ending \$ are
         included in the regex; otherwise, legal substrings of an illegal string
         can be matched. For example, the string accccbabaaccccbcbba does not
         match as a whole, but the substrings acccc, ab, and accccbcbba (split
@@ -76,25 +76,31 @@
         ``b", it must be followed by at least ``aa". If a string in this
         language ends with a ``b", it must be immediately preceded by an ``a".
       \item %3b
-        \includegraphics{img/prob3b.svg}
+        \includegraphics{img/prob3b.png}
       \item %3c
-        LL grammars cannot handle left recursion. This grammar uses left
-        recursion to expand rules A and B, so this grammar is not LL. (LL
-        grammars cannot handle left recursion because the rules can expand
-        infinitely long, and LL grammars feature a finite maximum number of
-        tokens to determine the path along choice points.)
+        At every choice point of this grammar, the first token of one choice is
+        always `a' and the first token of the second choice is always `b'. Thus
+        one only need look forward one token to determine which choice was
+        made. Therefore, this grammar is LL(1).
       \item %3d
         Grammars are ambiguous if there exists a string for which there is more
         than one way to parse it. Below is another parse tree for ``abaa".
         Therefore, this grammar is ambiguous.
         
-        \includegraphics{img/prob3d.svg}
+        \includegraphics{img/prob3d.png}
     \end{enumerate}
     \item %4
     \begin{enumerate}
       \item %4a
-        This grammar uses left recursion in the rule EXP. Therefore, this
-        grammar is not LL(1).
+        At the rule \em EXP \em lies a choice point with two choices: 
+        \em ID ``:=" EXP \em and \em TERM TERM\_TAIL \em. \em TERM \em expands
+        to \em FACTOR FACTOR\_TAIL \em, and \em FACTOR \em expands to \em ``("
+        EXP ``)" | ID \em. Thus, in \em EXP \em's choice point, both choices
+        can begin with an \em ID \em token, so by looking only one token
+        forward always, one cannot be sure which choice was taken by the
+        generator. Therefore, this grammar is not LL(1).
+      \item %4b
+        
     \end{enumerate}
     \item %5
       The unary negation operator was placed with the ADDOPs for symmetry--
@@ -106,7 +112,7 @@
       The expression \lstinline{-8 * 5} can be thus represented with this
       abstract syntax tree:
       
-      \includegraphics{img/prob5.svg}
+      \includegraphics{img/prob5.png}
       
       This parsing is similar to parsing with the negation operator in EXP4 in
       that the answer is still -40 since the negation operator is commutative.
