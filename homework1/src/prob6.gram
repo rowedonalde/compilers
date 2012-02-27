@@ -10,6 +10,7 @@ ARITHMETIC  -> TERM ( SPACE* ("+" | "-") SPACE* TERM )*
 TERM        -> FACTOR ( SPACE* ("*" | "/") SPACE* FACTOR )*
 FACTOR      -> ("-")? SPACE* NEG_OR_POS
 NEG_OR_POS  -> EXP SPACE* "!"
+FUN_CALL    -> ID SPACE* "(" SPACE* EXP (SPACE* "," SPACE* EXP)* SPACE* ")" 
 
 Micro:
 
@@ -23,3 +24,6 @@ ALPHA       -> [a-zA-Z]
 PUNC        -> [-`~!@#$%\^&*\(\)_+=|{}[\]';:,./?<>]
 ESC_SEQ     -> "\\\"" | "\\'" | "\\r" | "\\n" | "\\\\" | "\\u" HEX{4}
 HEX         -> DIGIT | [A-F]
+SPACE       -> " " | "\n" | "\t"
+ID          -> ( (ALPHA | "$") (ALPHA | DIGIT | [_@$])* ) - RESERVED
+RESERVED    -> "fun" | "if" | "else" | "E"
