@@ -1,0 +1,25 @@
+Macro:
+
+PROGRAM     -> (FUN_DECL)+
+FUN_DECL    -> SPACE* "fun" SPACE+ ID SPACE* PARAMS SPACE* BLOCK SPACE*
+PARAMS      -> "(" SPACE* ID SPACE* ("," SPACE* ID SPACE*)* ")"
+BLOCK       -> "{" ( SPACE* EXP SPACE* ";" )+ SPACE* "}"
+EXP         -> CONDITIONAL | ARITHMETIC | NUM_LIT | STR_LIT | ID | FUN_CALL
+CONDITIONAL -> EXP SPACE+ "if" SPACE+ EXP SPACE+ "else" SPACE+ EXP
+ARITHMETIC  -> TERM ( SPACE* ("+" | "-") SPACE* TERM )*
+TERM        -> FACTOR ( SPACE* ("*" | "/") SPACE* FACTOR )*
+FACTOR      -> ("-")? SPACE* NEG_OR_POS
+NEG_OR_POS  -> EXP SPACE* "!"
+
+Micro:
+
+NUM_LIT     -> DIGIT+ FRACTION? (SPACE* EXPONENT)?
+FRACTION    -> "." DIGIT+
+EXPONENT    -> "E" SPACE* ("+" | "-")? SPACE* DIGIT+
+DIGIT       -> [0-9]
+STR_LIT     -> "\""
+CHAR        -> DIGIT | ALPHA | PUNC | ESC_SEQ | SPACE
+ALPHA       -> [a-zA-Z]
+PUNC        -> [-`~!@#$%\^&*\(\)_+=|{}[\]';:,./?<>]
+ESC_SEQ     -> "\\\"" | "\\'" | "\\r" | "\\n" | "\\\\" | "\\u" HEX{4}
+HEX         -> DIGIT | [A-F]
