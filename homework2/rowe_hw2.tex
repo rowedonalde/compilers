@@ -2,3 +2,26 @@
 \title{CMSI 488 Homework 2}
 \author{Don Rowe}
 \date{Due March 27, 2012}
+
+\usepackage{listings}
+\usepackage[landscape]{geometry}
+\usepackage{graphicx}
+
+\lstset{
+  basicstyle=\footnotesize
+}
+
+\begin{document}
+  \maketitle
+  
+  \begin{enumerate}
+    \item %1
+      SKIP -> [ \t]+
+      NUMERAL-> [0-9]+
+      EXPONENT-> "^" SKIP? NUMERAL
+      DEGREE -> "x" SKIP? EXPONENT
+      TERM -> NUMERAL (SKIP? DEGREE)? | DEGREE
+      POLYNOMIAL -> SKIP? "-"? TERM (SKIP? [-+]? TERM)* SKIP?
+  
+  \end{enumerate}
+\end{document}
