@@ -4,3 +4,14 @@
  * A JavaCC specification for a polynomial evaluator.
  */
 
+options
+{
+    UNICODE_INPUT = true;
+    STATIC = false;
+}
+
+PARSER_BEGIN(Parser)
+
+import java.util.List;
+import java.util.ArrayList;
+import java.io.Reader;
