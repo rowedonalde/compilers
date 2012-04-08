@@ -4,36 +4,33 @@
  * A JavaCC specification for a polynomial evaluator.
  */
 
-/*options
-{
-    UNICODE_INPUT = true;
-    STATIC = false;
-}*/
+PARSER_BEGIN(Parser)
 
-PARSER_BEGIN(SyntaxChecker)
+import java.util.List;
+import java.util.ArrayList;
+import java.io.Reader;
 
-public class SyntaxChecker
-{
-    public static void main(String[] args)
+public class Parser {
+    
+    public Expression parse()
     {
-        try
-        {
-            new SyntaxChecker(new java.io.StringReader(args[0])).S();
-            System.out.println("Syntax is okay");
-        }
-        catch (Throwable e)
-        {
-            System.out.println("Syntax check failed: " + e.getMessage());
-        }
+        return EXP();
     }
 }
 
-PARSER_END(SyntaxChecker)
+PARSER_END(Parser)
 
-SKIP: { " " | "\t" | "\n" | "\r" }
-TOKEN: { "(" | ")" | "+" | "*" | <NUM: (["0"-"9"])+> }
+SKIP: {
+    " " | "\t" | <"--" (~["\n","\r"])*>
+}
 
-void S(): {} {E() <EOF>}
-void E(): {} {T() ("+" T())*}
-void T(): {} {F() ("*" F())*}
-void F(): {} {<NUM> | "(" E()")" }
+// Reserved Words and symbols
+
+TOKEN:
+{
+    "+" | "-" | "^"
+|
+    < BR: "\n" | "\r" | "\r\n" >
+|
+    
+}
