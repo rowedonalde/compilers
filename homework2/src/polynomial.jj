@@ -26,8 +26,7 @@ SKIP: {
 
 // Reserved Words and symbols
 
-TOKEN:
-{
+TOKEN: {
     "+" | "-" | "^"
 |
     < BR: "\n" | "\r" | "\r\n" >
@@ -37,6 +36,15 @@ TOKEN:
     < X: "x" >
 }
 
-//
-// 
-//
+// --------------------------------
+// EXP -> MONOMIAL ( "+" MONOMIAL)*
+// --------------------------------
+
+Expression EXP(): {
+    List<Monomial> monomials = new ArrayList<Monomial>();
+    Monomial m;
+}{
+    m = MONOMIAL {monomials.add(m);}
+    ("+" m = MONOMIAL {monomials.add(m);})
+    {return new Expression(monomials);}
+}
