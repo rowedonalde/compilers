@@ -7,5 +7,8 @@
 
 public class Evaluator
 {
-    
+    public static double evaluate(Expression exp, double value)
+    {
+        
+    }
 }
