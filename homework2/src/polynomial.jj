@@ -44,8 +44,8 @@ Expression EXP(): {
     List<Monomial> monomials = new ArrayList<Monomial>();
     Monomial m;
 }{
-    m = MONOMIAL {monomials.add(m);}
-    ("+" m = MONOMIAL {monomials.add(m);})
+    m = MONOMIAL() {monomials.add(m);}
+    ("+" m = MONOMIAL() {monomials.add(m);})
     {return new Expression(monomials);}
 }
 
@@ -57,6 +57,17 @@ Monomial MONOMIAL(): {
     int coefficient = 1;
     Degree deg = new Degree(0);
 }{
-    (coefficient = <INTLIT> (deg = DEGREE)? | deg = DEGREE)
+    (coefficient = <INTLIT> (deg = DEGREE())? | deg = DEGREE())
     {return new Monomial(coefficient, deg);}
+}
+
+// -------------------------
+// DEGREE -> x ("^" INTLIT)?
+// -------------------------
+
+Degree DEGREE(): {
+    int exponent = 1;
+}{
+    "x" ("^" exponent = <INTLIT>)
+    {return new Degree(exponent);}
 }
