@@ -48,3 +48,15 @@ Expression EXP(): {
     ("+" m = MONOMIAL {monomials.add(m);})
     {return new Expression(monomials);}
 }
+
+// -------------------------------------------
+// MONOMIAL -> INTLIT DEGREE? | DEGREE
+// -------------------------------------------
+
+Monomial MONOMIAL(): {
+    int coefficient = 1;
+    Degree deg = new Degree(0);
+}{
+    (coefficient = <INTLIT> (deg = DEGREE)? | deg = DEGREE)
+    {return new Monomial(coefficient, deg);}
+}
