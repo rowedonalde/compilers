@@ -149,8 +149,20 @@ public class PolynomialTester
      }
      
      /**
-      * 
+      * Test that no argument in Expression constructor throws error:
       */
+     @Test(expected = IllegalArgumentException.class)
+     public void testExpressionNoArgument()
+     {
+         Expression exp = new Expression();
+     }
+     
+     /**
+      * Test some compiled String evaluations of
+      * "3x^2 + 2x + 1"
+      */
+     //@Test
+     //public void test
 }
 
 
