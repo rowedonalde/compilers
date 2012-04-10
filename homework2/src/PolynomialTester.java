@@ -189,6 +189,25 @@ public class PolynomialTester
          
          assertThat(exp.evaluate(0), is(1.0));
      }
+     
+     /**
+      * Test that a polynomial String with weird spacing is valid
+      *
+      * Equivalent to testParserDegreeTwo()
+      */
+     @Test
+     public void testParserWeirdSpacing()
+     {
+         String polynomial = "   3 x    ^2 +2 x +     1 ";
+         Parser parser = new Parser(new StringReader(polynomial));
+         Expression exp = parser.parse();
+         
+         assertThat(exp.evaluate(0), is(1.0));
+         assertThat(exp.evaluate(1), is(6.0));
+         assertThat(exp.evaluate(2), is(17.0));
+         assertThat(exp.evaluate(-1), is(2.0));
+         assertThat(exp.evaluate(-2), is(9.0));
+     }
 }
 
 
