@@ -43,4 +43,36 @@ public class PolynomialTester
         assertThat(deg.evaluate(10), is(10));
         assertThat(deg.evaluate(-10), is(-10));
     }
+    
+    /**
+     * Evaluate the degree x^2
+     */
+    @Test
+    public void testDegreeTwo()
+    {
+        Degree deg = new Degree(2);
+        assertThat(deg.getExponent(), is(2));
+        assertThat(deg.evaluate(0), is(0));
+        assertThat(deg.evaluate(1), is(1));
+        assertThat(deg.evaluate(-1), is(1));
+        assertThat(deg.evaluate(2), is(4));
+        assertThat(deg.evaluate(-2), is(4));
+        assertThat(deg.evaluate(10), is(100));
+        assertThat(deg.evaluate(-10), is(100));
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
