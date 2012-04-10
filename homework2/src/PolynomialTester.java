@@ -27,4 +27,20 @@ public class PolynomialTester
         assertThat(deg.evaluate(2), is(1));
         assertThat(deg.evaluate(1000), is(1));
     }
+    
+    /**
+     * Evaluate the degree x^1: should always evaluate to x
+     */
+    @Test
+    public void testDegreeOne()
+    {
+        Degree deg = new Degree(1);
+        assertThat(deg.getExponent(), is(1));
+        assertThat(deg.evaluate(1), is(1));
+        assertThat(deg.evaluate(0), is(0));
+        assertThat(deg.evaluate(-1), is(-1));
+        assertThat(deg.evaluate(2), is(2));
+        assertThat(deg.evaluate(10), is(10));
+        assertThat(deg.evaluate(-10), is(-10));
+    }
 }
