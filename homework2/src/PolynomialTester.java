@@ -79,6 +79,21 @@ public class PolynomialTester
          double x = 1.1;
          Degree deg = new Degree(x);
      }
+     
+     /**
+      * Test some evaluations of 1x^2
+      */
+     @Test
+     public void testMonomialOneDegreeTwo()
+     {
+         Degree deg = new Degree(2);
+         Monomial mon = new Monomial(1, deg);
+         assert(mon.evaluate(0), is(0));
+         assert(mon.evaluate(1), is(1));
+         assert(mon.evaluate(2), is(4));
+         assert(mon.evaluate(-1), is(1));
+         assert(mon.evaluate(-2), is(4));
+     }
 }
 
 
