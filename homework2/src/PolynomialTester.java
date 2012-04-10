@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.StringReader;
 
 public class PolynomialTester
 {
@@ -118,7 +119,7 @@ public class PolynomialTester
       * Test that no argument in Monomial constructor throws error:
       */
      @Test(expected = IllegalArgumentException.class)
-     public void testDegreeNoArgument()
+     public void testMonomialNoArgument()
      {
          Monomial mon = new Monomial();
      }
