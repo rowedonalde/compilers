@@ -60,6 +60,25 @@ public class PolynomialTester
         assertThat(deg.evaluate(10), is(100));
         assertThat(deg.evaluate(-10), is(100));
     }
+    
+    /**
+     * Test that no argument in Degree constructor throws error
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testDegreeNoArgument()
+    {
+        Degree deg = new Degree();
+    }
+    
+    /**
+     *
+     */
+     @Test(expected = IllegalArgumentException.class)
+     public void testDegreeFloatArgument()
+     {
+         double x = 1.1;
+         Degree deg = new Degree(x);
+     }
 }
 
 
