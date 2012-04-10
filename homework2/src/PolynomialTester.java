@@ -71,10 +71,10 @@ public class PolynomialTester
     }
     
     /**
-     *
+     * Test that Degree constructor does not take double type
      */
      @Test(expected = IllegalArgumentException.class)
-     public void testDegreeFloatArgument()
+     public void testDegreeDoubleArgument()
      {
          double x = 1.1;
          Degree deg = new Degree(x);
