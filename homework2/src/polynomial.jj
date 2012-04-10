@@ -14,16 +14,12 @@ public class Parser {
     
     public Expression parse()
     {
-        //return EXP();
-        
         try {
             return EXP();
         } catch (TokenMgrError e) {
-            //log.exception(e);
             System.out.println(e);
             return null;
         } catch (ParseException e) {
-            //log.exception(e);
             System.out.println(e);
             return null;
         }
