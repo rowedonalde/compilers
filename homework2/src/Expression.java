@@ -33,7 +33,8 @@ public class Expression
         //keep summing:
         for (int i = 0; i < this.monomials.size(); i++)
         {
-            sum += monomials.get(i);
+            mon = monomials.get(i);
+            sum += mon.evaluate(x);
         }
         
         return sum;
