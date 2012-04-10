@@ -14,7 +14,19 @@ public class Parser {
     
     public Expression parse()
     {
-        return EXP();
+        //return EXP();
+        
+        try {
+            return EXP();
+        } catch (TokenMgrError e) {
+            //log.exception(e);
+            System.out.println(e);
+            return null;
+        } catch (ParseException e) {
+            //log.exception(e);
+            System.out.println(e);
+            return null;
+        }
     }
 }
 
@@ -45,7 +57,7 @@ Expression EXP(): {
     Monomial m;
 }{
     m = MONOMIAL() {monomials.add(m);}
-    ("+" m = MONOMIAL() {monomials.add(m);})
+    ("+" m = MONOMIAL() {monomials.add(m);})*
     {return new Expression(monomials);}
 }
 
@@ -54,10 +66,15 @@ Expression EXP(): {
 // -------------------------------------------
 
 Monomial MONOMIAL(): {
+    Token t;
     int coefficient = 1;
     Degree deg = new Degree(0);
 }{
-    (coefficient = <INTLIT> (deg = DEGREE())? | deg = DEGREE())
+    (
+        t = <INTLIT> {coefficient = Integer.parseInt(t.image);}
+        (deg = DEGREE())?
+        | deg = DEGREE()
+    )
     {return new Monomial(coefficient, deg);}
 }
 
@@ -66,8 +83,9 @@ Monomial MONOMIAL(): {
 // -------------------------
 
 Degree DEGREE(): {
+    Token t;
     int exponent = 1;
 }{
-    "x" ("^" exponent = <INTLIT>)
+    "x" ("^" t = <INTLIT> {exponent = Integer.parseInt(t.image);})? 
     {return new Degree(exponent);}
 }

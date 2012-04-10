@@ -22,7 +22,7 @@ public class PolynomialEvaluator
         int xValue = Integer.parseInt(args[1]);
         
         //Build the parser for the given polynomial String:
-        Parser parser = new Parser(StringReader(polynomial));
+        Parser parser = new Parser(new StringReader(polynomial));
         
         //The actual expression tree object, which we can evaluate
         //with the x-value:
