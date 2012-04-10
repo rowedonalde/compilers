@@ -88,11 +88,28 @@ public class PolynomialTester
      {
          Degree deg = new Degree(2);
          Monomial mon = new Monomial(1, deg);
-         assert(mon.evaluate(0), is(0));
-         assert(mon.evaluate(1), is(1));
-         assert(mon.evaluate(2), is(4));
-         assert(mon.evaluate(-1), is(1));
-         assert(mon.evaluate(-2), is(4));
+         assertThat(mon.getCoefficient(), is(1));
+         assertThat(mon.evaluate(0), is(0));
+         assertThat(mon.evaluate(1), is(1));
+         assertThat(mon.evaluate(2), is(4));
+         assertThat(mon.evaluate(-1), is(1));
+         assertThat(mon.evaluate(-2), is(4));
+     }
+     
+     /**
+      * Test some evaluations of 2x^2
+      */
+     @Test
+     public void testMonomialTwoDegreeTwo()
+     {
+         Degree deg = new Degree(2);
+         Monomial mon = new Monomial(2, deg);
+         assertThat(mon.getCoefficient(), is(2));
+         assertThat(mon.evaluate(0), is(0));
+         assertThat(mon.evaluate(1), is(2));
+         assertThat(mon.evaluate(2), is(8));
+         assertThat(mon.evaluate(-1), is(2));
+         assertThat(mon.evaluate(-2), is(4));
      }
 }
 
