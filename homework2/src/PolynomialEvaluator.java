@@ -10,6 +10,8 @@
  * and xValue is an integer value for x.
  */
 
+import java.io.StringReader;
+
 public class PolynomialEvaluator
 {
     public static void main(String[] args)
@@ -20,7 +22,7 @@ public class PolynomialEvaluator
         int xValue = Integer.parseInt(args[1]);
         
         //Build the parser for the given polynomial String:
-        Parser parser = new Parser(java.io.StringReader(polynomial));
+        Parser parser = new Parser(StringReader(polynomial));
         
         //The actual expression tree object, which we can evaluate
         //with the x-value:
