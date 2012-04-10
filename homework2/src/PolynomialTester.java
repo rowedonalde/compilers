@@ -166,7 +166,7 @@ public class PolynomialTester
      @Test
      public void testParserDegreeTwo()
      {
-         String polynomial = "3x^2 + 2x + 1"
+         String polynomial = "3x^2 + 2x + 1";
          Parser parser = new Parser(new StringReader(polynomial));
          Expression exp = parser.parse();
          
@@ -180,7 +180,15 @@ public class PolynomialTester
      /**
       * Test that an empty polynomial String throws an error
       */
-     
+     @Test(expected = ParseException)
+     public void testParserEmptyString()
+     {
+         String polynomial = "";
+         Parser parser = new Parser(new StringReader(polynomial));
+         Expression exp = parser.parse();
+         
+         assertThat(exp.evaluate(0), is(1.0));
+     }
 }
 
 
