@@ -209,18 +209,3 @@ public class PolynomialTester
          assertThat(exp.evaluate(-2), is(9.0));
      }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
