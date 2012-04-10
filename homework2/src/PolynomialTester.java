@@ -160,9 +160,27 @@ public class PolynomialTester
      /**
       * Test some compiled String evaluations of
       * "3x^2 + 2x + 1"
+      *
+      * Should be the same as testExpression()
       */
-     //@Test
-     //public void test
+     @Test
+     public void testParserDegreeTwo()
+     {
+         String polynomial = "3x^2 + 2x + 1"
+         Parser parser = new Parser(new StringReader(polynomial));
+         Expression exp = parser.parse();
+         
+         assertThat(exp.evaluate(0), is(1.0));
+         assertThat(exp.evaluate(1), is(6.0));
+         assertThat(exp.evaluate(2), is(17.0));
+         assertThat(exp.evaluate(-1), is(2.0));
+         assertThat(exp.evaluate(-2), is(9.0));
+     }
+     
+     /**
+      * Test that an empty polynomial String throws an error
+      */
+     
 }
 
 
