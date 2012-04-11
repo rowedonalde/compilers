@@ -69,25 +69,6 @@ public class PolynomialTester
         assertThat(deg.evaluate(10), is(100.0));
         assertThat(deg.evaluate(-10), is(100.0));
     }
-    
-    /**
-     * Test that no argument in Degree constructor throws error
-     */
-    /*@Test(expected = IllegalArgumentException.class)
-    public void testDegreeNoArgument()
-    {
-        //Degree deg = new Degree();
-    }*/
-    
-    /**
-     * Test that Degree constructor does not take double type
-     */
-     /*@Test(expected = IllegalArgumentException.class)
-     public void testDegreeDoubleArgument()
-     {
-         double x = 1.1;
-         //Degree deg = new Degree(x);
-     }*/
      
      /**
       * Test some evaluations of 1x^2
@@ -122,15 +103,6 @@ public class PolynomialTester
      }
      
      /**
-      * Test that no argument in Monomial constructor throws error:
-      */
-     /*@Test(expected = IllegalArgumentException.class)
-     public void testMonomialNoArgument()
-     {
-         //Monomial mon = new Monomial();
-     }*/
-     
-     /**
       * Test some evaluations of 3x^2 + 2x + 1
       */
      @Test
@@ -156,18 +128,6 @@ public class PolynomialTester
      }
      
      /**
-      * Test that no argument in Expression constructor throws error:
-      */
-     /*@Test(expected = IllegalArgumentException.class)
-     public void testExpressionNoArgument()
-     {
-         //Expression exp = new Expression();
-     }*/
-    
-    
-    
-     
-     /**
       * Test some compiled String evaluations of
       * "3x^2 + 2x + 1"
       *
@@ -186,19 +146,6 @@ public class PolynomialTester
          assertThat(exp.evaluate(-1), is(2.0));
          assertThat(exp.evaluate(-2), is(9.0));
      }
-     
-     /**
-      * Test that an empty polynomial String throws an error
-      */
-     /*@Test(expected = ParseException.class)
-     public void testParserEmptyString()
-     {
-         String polynomial = "";
-         Parser parser = new Parser(new StringReader(polynomial));
-         Expression exp = parser.parse();
-         
-         assertThat(exp.evaluate(0), is(1.0));
-     }*/
      
      /**
       * Test that a polynomial String with weird spacing is valid
