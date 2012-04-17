@@ -4,14 +4,84 @@
  * A JavaCC specification for a polynomial evaluator.
  */
 
-options
-{
-    UNICODE_INPUT = true;
-    STATIC = false;
-}
-
 PARSER_BEGIN(Parser)
 
 import java.util.List;
 import java.util.ArrayList;
 import java.io.Reader;
+
+public class Parser {
+    
+    public Expression parse()
+    {
+        try {
+            return EXP();
+        } catch (TokenMgrError e) {
+            System.out.println(e);
+            return null;
+        } catch (ParseException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+}
+
+PARSER_END(Parser)
+
+SKIP: {
+    " " | "\t" | <"--" (~["\n","\r"])*>
+}
+
+// Reserved Words and symbols
+
+TOKEN: {
+    "+" | "-" | "^"
+|
+    < BR: "\n" | "\r" | "\r\n" >
+|
+    < INTLIT: (["0"-"9"])+ >
+|
+    < X: "x" >
+}
+
+// --------------------------------
+// EXP -> MONOMIAL ( "+" MONOMIAL)*
+// --------------------------------
+
+Expression EXP(): {
+    List<Monomial> monomials = new ArrayList<Monomial>();
+    Monomial m;
+}{
+    m = MONOMIAL() {monomials.add(m);}
+    ("+" m = MONOMIAL() {monomials.add(m);})*
+    {return new Expression(monomials);}
+}
+
+// -------------------------------------------
+// MONOMIAL -> INTLIT DEGREE? | DEGREE
+// -------------------------------------------
+
+Monomial MONOMIAL(): {
+    Token t;
+    int coefficient = 1;
+    Degree deg = new Degree(0);
+}{
+    (
+        t = <INTLIT> {coefficient = Integer.parseInt(t.image);}
+        (deg = DEGREE())?
+        | deg = DEGREE()
+    )
+    {return new Monomial(coefficient, deg);}
+}
+
+// -------------------------
+// DEGREE -> x ("^" INTLIT)?
+// -------------------------
+
+Degree DEGREE(): {
+    Token t;
+    int exponent = 1;
+}{
+    "x" ("^" t = <INTLIT> {exponent = Integer.parseInt(t.image);})? 
+    {return new Degree(exponent);}
+}
