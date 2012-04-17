@@ -16,12 +16,13 @@
   
   \begin{enumerate}
     \item %1
-      SKIP -> [ \t]+
-      NUMERAL-> [0-9]+
-      EXPONENT-> "^" SKIP? NUMERAL
-      DEGREE -> "x" SKIP? EXPONENT
-      TERM -> NUMERAL (SKIP? DEGREE)? | DEGREE
+    \texttt{
+      SKIP -> [ \textbackslash t]+ \\
+      NUMERAL-> [0-9]+ \\
+      EXPONENT-> "\textasciicircum" SKIP? NUMERAL \\
+      DEGREE -> "x" SKIP? EXPONENT \\
+      TERM -> NUMERAL (SKIP? DEGREE)? | DEGREE \\
       POLYNOMIAL -> SKIP? "-"? TERM (SKIP? [-+]? TERM)* SKIP?
-  
+    }
   \end{enumerate}
 \end{document}
